@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `LibreriaDB`.`Libro` (
   `priceLibro` INT NULL,
   `stock` INT NULL,
   `libreriaAsociada` INT NULL,
+  `yearLibro` INT NULL,
   PRIMARY KEY (`idLibro`),
   UNIQUE INDEX `nameLibro_UNIQUE` (`nameLibro` ASC) VISIBLE,
   INDEX `idLibreria_idx` (`libreriaAsociada` ASC) VISIBLE,
@@ -75,8 +76,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `LibreriaDB`.`Venta` (
   `idVenta` INT NOT NULL AUTO_INCREMENT,
   `facturaAsociada` INT NULL,
-  `librosAsociados` INT NULL,
   `cantidad` INT NULL,
+  `librosAsociados` INT NULL,
   PRIMARY KEY (`idVenta`),
   INDEX `idFactura_idx` (`facturaAsociada` ASC) VISIBLE,
   INDEX `idLibro_idx` (`librosAsociados` ASC) VISIBLE,
