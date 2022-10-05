@@ -37,13 +37,7 @@ CREATE TABLE IF NOT EXISTS `LibreriaDB`.`Libreria` (
   `adressLibreria` VARCHAR(45) NULL,
   `phoneLibreria` INT NULL,
   `emailLibreria` VARCHAR(45) NULL,
-  PRIMARY KEY (`idLibreria`),
-  INDEX `nameLibro_idx` (`stockLibreria` ASC) VISIBLE,
-  CONSTRAINT `nameLibro`
-    FOREIGN KEY (`stockLibreria`)
-    REFERENCES `LibreriaDB`.`Libro` (`nameLibro`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`idLibreria`))
 ENGINE = InnoDB;
 
 
@@ -120,3 +114,4 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
