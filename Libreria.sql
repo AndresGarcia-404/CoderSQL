@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `LibreriaDB`.`Libreria` (
   `stockLibreria` VARCHAR(45) NULL,
   `nameLibreria` VARCHAR(45) NULL,
   `adressLibreria` VARCHAR(45) NULL,
-  `phoneLibreria` INT NULL,
+  `phoneLibreria` VARCHAR(45) NULL,
   `emailLibreria` VARCHAR(45) NULL,
   PRIMARY KEY (`idLibreria`))
 ENGINE = InnoDB;
@@ -115,3 +115,75 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+INSERT INTO cliente (`idCliente`,`nameCliente`,`adressCliente`,`phoneCliente`,`emailCliente`) VALUES (1,'Felipe Garcia','Mz 14 Cs 13 Villa Nueva','4854563541','felipe.garcia@mail.com');
+INSERT INTO cliente (`idCliente`,`nameCliente`,`adressCliente`,`phoneCliente`,`emailCliente`) VALUES (2,'Juan Jimenez','Apto 503 Sol Naciente','4685753245','juan.jimenez@mail.com');
+INSERT INTO cliente (`idCliente`,`nameCliente`,`adressCliente`,`phoneCliente`,`emailCliente`) VALUES (3,'Maria Ruiz','Calle 104 CampoReal','2859235485','maria.ruiz@mail.com');
+INSERT INTO cliente (`idCliente`,`nameCliente`,`adressCliente`,`phoneCliente`,`emailCliente`) VALUES (4,'Leonel Alvarez','Mz 09 Cs 18 Resplandor','8659453248','leonel.alvarez@mail.com');
+INSERT INTO cliente (`idCliente`,`nameCliente`,`adressCliente`,`phoneCliente`,`emailCliente`) VALUES (5,'Pamela Arias','Calle 200 Corferias','6548302548','pamela.arias@mail.com');
+
+INSERT INTO libreria (`idLibreria`,`stockLibreria`,`nameLibreria`,`adressLibreria`,`phoneLibreria`,`emailLibreria`) VALUES (1,'Ciencia ficcion','La Mazmorra Del Androide','Calle 101 Centro MX','5054264589','maz.andoride@mail.com');
+INSERT INTO libreria (`idLibreria`,`stockLibreria`,`nameLibreria`,`adressLibreria`,`phoneLibreria`,`emailLibreria`) VALUES (2,'Thriller y Novela Negra','Secret Library','Cs 05 Villa Real','5056245836','sec.lib@mail.com');
+INSERT INTO libreria (`idLibreria`,`stockLibreria`,`nameLibreria`,`adressLibreria`,`phoneLibreria`,`emailLibreria`) VALUES (3,'Literatura Universal','Mundo Libros','Edificio Revolicion piso 4','5052486598','mund.lib@mail.com');
+INSERT INTO libreria (`idLibreria`,`stockLibreria`,`nameLibreria`,`adressLibreria`,`phoneLibreria`,`emailLibreria`) VALUES (4,'Romance','Libreria Oblivion','Calle 54 Union Central','5051232457','lib.oblivion@mail.com');
+INSERT INTO libreria (`idLibreria`,`stockLibreria`,`nameLibreria`,`adressLibreria`,`phoneLibreria`,`emailLibreria`) VALUES (5,'Filosofia','El Banquete De Libros','Via de la reforma N7','5050059784','filoso.lib@mail.com');
+INSERT INTO libreria (`idLibreria`,`stockLibreria`,`nameLibreria`,`adressLibreria`,`phoneLibreria`,`emailLibreria`) VALUES (6,'Comics','Get Comics','CC MundoFantasma local 67','5051598467','comicon.lib@mail.com');
+INSERT INTO libreria (`idLibreria`,`stockLibreria`,`nameLibreria`,`adressLibreria`,`phoneLibreria`,`emailLibreria`) VALUES (7,'Literatura Juvenil','Opio En Las Nubes','Avenida Caporales Cs 26','5053254876','juv.opnub@mail.com');
+
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (1,'Dune','Frank Herbert','Ciencia ficcion',305,45,1,1965);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (2,'1984','George Orwell','Ciencia ficcion',950,87,1,1949);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (3,'Un mundo feliz','Aldous Huxley','Ciencia ficcion',456,65,1,1932);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (4,'El libro negro de las horas','Eva Garcia','Thriller y Novela Negra',614,12,2,2022);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (5,'La Bestia','Carmen Mola','Thriller y Novela Negra',562,9,2,2010);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (6,'El cuervo','Edgar Allan Poe','Thriller y Novela Negra',238,87,2,1845);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (7,'Orgullo Y prejuicio','Jane Austen','Literatura Universal',210,15,3,1813);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (8,'Cien anios de soledad','Gabriel Garcia Marquez','Literatura Universal',428,7,3,1982);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (9,'Moby-Dick','Herman Melville','Literatura Universal',140,48,3,1851);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (10,'Nosotros en la luna','Alice Kellen','Romance',368,32,4,2020);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (11,'Bajo la misma estrella','John Green','Romance',275,12,4,2012);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (12,'Critica de la razon pura','Immanuel Kant','Filosofia',237,5,5,1787);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (13,'Etica nicomaquea','Aristoteles','Filosofia',435,9,5,349);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (14,'Leviatan','Thomas Hobbes','Filosofia',700,7,5,1651);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (15,'La filosofia de Deadpool','Marvel','Comics',119,5,6,2020);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (16,'Watchmen: ED','Alan Moore','Comics',579,56,6,1985);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (17,'Batman: The Killing Joke','Alan Moore','Comics',1055,37,6,1988);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (18,'Los juegos del hambre','Suzanne Collins','Literatura Juvenil',350,6,7,2008);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (19,'Harry Potter y la camara secrete','J. K. Rowling','Literatura Juvenil',299,26,7,1998);
+INSERT INTO libro (`idLibro`,`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES (20,'The Maze Runner','James Dasher','Literatura Juvenil',860,108,7,2009);
+
+INSERT INTO venta (`idVenta`,`facturaAsociada`,`cantidad`,`librosAsociados`) VALUES (1,NULL,7,7);
+INSERT INTO venta (`idVenta`,`facturaAsociada`,`cantidad`,`librosAsociados`) VALUES (2,NULL,3,17);
+INSERT INTO venta (`idVenta`,`facturaAsociada`,`cantidad`,`librosAsociados`) VALUES (3,NULL,14,3);
+INSERT INTO venta (`idVenta`,`facturaAsociada`,`cantidad`,`librosAsociados`) VALUES (4,NULL,2,14);
+INSERT INTO venta (`idVenta`,`facturaAsociada`,`cantidad`,`librosAsociados`) VALUES (5,NULL,20,20);
+INSERT INTO venta (`idVenta`,`facturaAsociada`,`cantidad`,`librosAsociados`) VALUES (6,NULL,40,20);
+
+INSERT INTO factura (`idFactura`,`clienteAsociado`,`ventaAsociada`) VALUES (1,1,1);
+INSERT INTO factura (`idFactura`,`clienteAsociado`,`ventaAsociada`) VALUES (2,1,2);
+INSERT INTO factura (`idFactura`,`clienteAsociado`,`ventaAsociada`) VALUES (3,2,3);
+INSERT INTO factura (`idFactura`,`clienteAsociado`,`ventaAsociada`) VALUES (4,4,4);
+INSERT INTO factura (`idFactura`,`clienteAsociado`,`ventaAsociada`) VALUES (5,3,5);
+INSERT INTO factura (`idFactura`,`clienteAsociado`,`ventaAsociada`) VALUES (6,5,6);
+
+UPDATE venta
+SET facturaAsociada = 1
+WHERE idVenta = 1;
+
+UPDATE venta
+SET facturaAsociada = 2
+WHERE idVenta = 2;
+
+UPDATE venta
+SET facturaAsociada = 3
+WHERE idVenta = 3;
+
+UPDATE venta
+SET facturaAsociada = 4
+WHERE idVenta = 4;
+
+UPDATE venta
+SET facturaAsociada = 5
+WHERE idVenta = 5;
+
+UPDATE venta
+SET facturaAsociada = 6
+WHERE idVenta = 6;
