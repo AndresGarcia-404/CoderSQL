@@ -187,3 +187,42 @@ WHERE idVenta = 5;
 UPDATE venta
 SET facturaAsociada = 6
 WHERE idVenta = 6;
+
+-- creacion de vistas
+
+-- 1. esta vista permite observar la cantidad de libros diferentes presentes en la libreria
+create view vista_variedad
+as
+select nameLibreria, (select count(libreriaAsociada) from libro 
+where libreria.idLibreria = libro.libreriaAsociada
+) as libros_Diferentes 
+from libreria;
+
+-- 2. esta vista permite observar el valor total de el stock dependiendo del libro 
+create view valor_total
+as
+select nameLibro,stock,pricelibro, (stock*pricelibro) as valor_Total
+from libro;
+
+-- 3. esta vistapermite obtener el valor de vender todo el stock de los libro de la libreria
+create view valor_libreria
+as
+select nameLibreria,(select sum(stock*pricelibro) from libro
+where libro.libreriaAsociada = libreria.idLibreria) as valor_libreria
+from libreria;
+
+-- 4. esta vista permite ver la cantidad de compras realizadas por los clientes
+create view numero_Compras
+as
+select idCliente,nameCliente,(select count(clienteAsociado) from factura
+where cliente.idCliente = factura.clienteAsociado) as numero_Compras
+from cliente;
+
+-- 5. esta vista permite ver el valor de las ventas realizadas
+create view valor_venta
+as
+select idVenta,cantidad,(select nameLibro from libro
+where libro.idLibro = venta.librosAsociados) as libro_Vendido,
+(select (venta.cantidad*priceLibro) from libro
+where venta.librosAsociados = libro.idLibro) as precio_Venta
+from venta;
