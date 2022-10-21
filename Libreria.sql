@@ -248,4 +248,20 @@ END$$
 
 DELIMITER ;
 
+USE `libreriadb`;
+DROP function IF EXISTS `precioVenta`;
+
+DELIMITER $$
+USE `libreriadb`$$
+CREATE FUNCTION `precioVenta`(precioLibro float,numeroLibros int) RETURNS float
+    NO SQL
+BEGIN
+	DECLARE resultado FLOAT;
+    SET resultado =(precioLibro*numeroLibros);
+RETURN resultado;
+END$$
+
+DELIMITER ;
+
 SELECT descuentoVenta(100,20) as preciofinal;
+SELECT precioVenta(1025.67,18) as precioTotal;
