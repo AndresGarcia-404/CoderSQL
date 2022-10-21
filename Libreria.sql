@@ -226,3 +226,26 @@ where libro.idLibro = venta.librosAsociados) as libro_Vendido,
 (select (venta.cantidad*priceLibro) from libro
 where venta.librosAsociados = libro.idLibro) as precio_Venta
 from venta;
+
+
+-- Creacion de funciones
+
+-- 1. funciona para calcular el precio de venta dado un descuento el precio de venta es un valor cualquiera  y el descuento es 
+-- un entero de 0 a 100 
+
+USE `libreriadb`;
+DROP function IF EXISTS `descuentoVenta`;
+
+DELIMITER $$
+USE `libreriadb`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `descuentoVenta`(precioVenta float,descuento int) RETURNS float
+    NO SQL
+BEGIN
+	DECLARE resultado FLOAT;
+    SET resultado =(precioVenta-(precioVenta*descuento/100));
+RETURN resultado;
+END$$
+
+DELIMITER ;
+
+SELECT descuentoVenta(100,20) as preciofinal;
