@@ -228,7 +228,7 @@ where venta.librosAsociados = libro.idLibro) as precio_Venta
 from venta;
 
 
--- Creacion de funciones
+-- CREACION DE FUNCIONES
 
 -- 1. funciona para calcular el precio de venta dado un descuento el precio de venta es un valor cualquiera  y el descuento es 
 -- un entero de 0 a 100 
@@ -246,6 +246,7 @@ BEGIN
 RETURN resultado;
 END$$
 
+-- 2. funcion para calcular el precio total de la venta, recibe como parametros el precio del libro y el numero de libros a comprar
 DELIMITER ;
 
 USE `libreriadb`;
@@ -265,3 +266,55 @@ DELIMITER ;
 
 SELECT descuentoVenta(100,20) as preciofinal;
 SELECT precioVenta(1025.67,18) as precioTotal;
+
+-- CREACION DE STORED PROCEDURES
+
+-- 1. insertar registros en una tabla de el proyecto
+USE `libreriadb`;
+DROP procedure IF EXISTS `sp_crearLibro`;
+
+DELIMITER $$
+USE `libreriadb`$$
+CREATE PROCEDURE `sp_crearLibro` (in argnameLib varchar(45), in argauthorlib varchar(45), in argcategory varchar(45), in argprice int, in argstock int, in argLibreriaAsociada int,in argyear int)
+BEGIN
+	INSERT INTO libro (`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) 
+    VALUES (argnamelib,argauthorlib,argcategory,argprice,argstock,argLibreriaAsociada,argyear);
+END$$
+DELIMITER 
+
+-- prueba de sp_crearLibro
+call sp_crearLibro ('Asesinato para principiantes','Holly Jackson','Literatura Juvenil',574,25,7,2019);
+
+-- 2.  indicar a través de un parámetro el campo de ordenamiento de una tabla y mediante un segundo parámetro, si el orden es descendente o ascendente.
+-- tomaremos el (1) para orden asc y el (2) para dsc
+
+USE `libreriadb`;
+DROP procedure IF EXISTS `sp_ordenaLibros`;
+
+DELIMITER $$
+USE `libreriadb`$$
+CREATE PROCEDURE `sp_ordenaLibros` (in argCat varchar(24),in opcion int)
+BEGIN
+
+IF opcion = 1 THEN
+		set @orden = concat('order by ',argCat,' asc');
+        
+	ELSEIF opcion = 2 THEN
+        set @orden = concat('order by ',argCat,' desc');
+    
+END IF;
+set @clausula = concat('SELECT * FROM libro ',@orden);
+prepare ejecutarSQL From @clausula;
+EXECUTE ejecutarSQL;
+DEALLOCATE PREPARE ejecutarSQL;
+END$$
+
+DELIMITER ;
+
+-- prueba sp_ordenaLibro, (1) ASC (2) DESC , los argumentos por lo que peude ser ordenado son:
+-- 'idLibro','nameLibro','auhorLibro','categoryLibro','priceLibro','stock','libreriaAsociada','yearLibro'
+call sp_ordenaLibros ('yearLibro',1);
+call sp_ordenaLibros ('priceLibro',2);
+call sp_ordenaLibros ('authorLibro',1);
+
+
