@@ -317,4 +317,64 @@ call sp_ordenaLibros ('yearLibro',1);
 call sp_ordenaLibros ('priceLibro',2);
 call sp_ordenaLibros ('authorLibro',1);
 
+-- ----------------------------------------------------------------------------------
+-- CREACION TRIGGERS
+-- ----------------------------------------------------------------------------------
+
+-- Como primera tabla escogi la tabla libro, para un primer trigger que represente el libro que se agrego
+-- y la fecha de ser agregado cree la tabla acciones libro
+
+CREATE TABLE `libreriadb`.`accioneslibro` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `idLibro` INT,
+  `libNombre` varchar(45),
+  `precio` INT,
+  `usuario` varchar(45),
+  `accion` VARCHAR(200),
+  `fecha` DATETIME,
+  PRIMARY KEY (`id`));
+ 
+-- este triger muestra quien y cuando se agrego un libro y el nombre del libro 
+CREATE TRIGGER log_tabla_libros AFTER INSERT ON libro
+FOR EACH ROW 
+INSERT INTO accioneslibro(fecha,usuario,accion) values (now(),user(),concat('Se agrego Libro: ',new.nameLibro));
+
+-- este trigger muestra la fecha y los componentes del libro agregado
+CREATE TRIGGER reg_tabla_libros BEFORE INSERT ON libro
+FOR EACH ROW
+INSERT INTO accioneslibro (fecha,idLibro,libNombre,precio) VALUES (now(), new.idLibro, new.nameLibro, new.priceLibro);
+
+-- prueba triggers:
+
+INSERT INTO libro (`nameLibro`,`authorLibro`,`categoryLibro`,`priceLibro`,`stock`,`libreriaAsociada`,`yearLibro`) VALUES ('Reina Roja','Juan Gómez Jurado','Thriller y Novela Negra',300,9,2,2018);
+SELECT * FROM accioneslibro;
+
+-- como segunda tabla escogi la tabla venta
+
+CREATE TABLE `libreriadb`.`accionesventa` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `cantidad` INT,
+  `librosAsociados` INT,
+  `usuario` varchar(45),
+  `accion` VARCHAR(200),
+  `fecha` DATETIME,
+  PRIMARY KEY (`id`));
+
+-- este triger muestra quien y cuando agrego una venta y la representacion de esta venta con su respectivo id
+ 
+CREATE TRIGGER log_tabla_venta AFTER INSERT ON venta
+FOR EACH ROW 
+INSERT INTO accionesventa(fecha,usuario,accion) values (now(),user(),concat('agrego una venta con id: ',new.idVenta));
+
+-- este trigger muestra la fecha y los componentes de la venta agregada
+
+CREATE TRIGGER reg_tabla_venta BEFORE INSERT ON venta
+FOR EACH ROW
+INSERT INTO accionesventa (fecha,librosAsociados,cantidad) VALUES (now(),new.librosAsociados, new.cantidad);
+
+-- prueba triggers:
+
+INSERT INTO venta (cantidad,librosAsociados) values (10,1);
+INSERT INTO venta (cantidad,librosAsociados) values (20,20);
+SELECT * FROM accionesVenta;
 
