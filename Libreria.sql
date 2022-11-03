@@ -389,9 +389,14 @@ create user 'lector'@'localhost' identified by '123';
 -- Otorgacion de permisos para visualizar toda la base de datos 
 grant select on *.* to 'lector'@'localhost';
 
--------------------------------------------------------------------
+-- -----------------------------------------------------------------
 -- Creacion de usuario "modificador" 
 
 create user 'modificador'@'localhost' identified by '123';
 -- Otorgacion de permisos para visualizar, ingresar y actualizar datos sobre toda la base de datos
 grant select, insert, update on *.* to 'modificador'@'localhost';
+
+-- comprobacion de la creacion de usuarios
+
+select * from user;
+
