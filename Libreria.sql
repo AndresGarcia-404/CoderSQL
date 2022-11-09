@@ -400,3 +400,34 @@ grant select, insert, update on *.* to 'modificador'@'localhost';
 
 select * from user;
 
+-- ------------------------------------------------------------------
+-- Sentencias del sublenguaje TCL
+-- ------------------------------------------------------------------
+
+use `libreriadb`;
+SELECT * FROM accioneslibro; 				#muestra antes de los cambios
+START TRANSACTION;                       	#empieza el modo "seguro"
+delete FROM accioneslibro WHERE id = 2; 	#aca eliminamos
+SELECT * FROM accioneslibro;  				#muestra los cambios
+rollback;                               	#para eliminar los cambios
+commit;                                 	#para ejecutar los cambios
+
+
+-- ----------------------------------------------------------------------------------------
+
+SELECT * FROM libro;
+
+START TRANSACTION;
+savepoint SP_0;
+call sp_crearLibro ('Guía del autoestopista galáctico','Douglas Adams','Ciencia ficcion',250,12,1,1979);
+call sp_crearLibro ('Crónicas marcianas','Ray Bradbury','Ciencia ficcion',420,78,1,1950);
+call sp_crearLibro ('El psicoanalista','John Katzenbach','Thriller y Novela Negra',500,9,2,2002);
+call sp_crearLibro ('Pedro Páramo','Juan Rulfo','Literatura Universal',74,5,3,1955);
+savepoint SP_1;
+call sp_crearLibro ('El amor en los tiempos del cólera','Gabriel García Márquez','Romance',658,41,4,1985);
+call sp_crearLibro ('Así habló Zaratustra','Friedrich Nietzsche','Filosofia',728,23,5,1883);
+call sp_crearLibro ('Billionaire Island','Mark Russell','Comics',333,2,6,2020);
+call sp_crearLibro ('Dime qué escondes','Karen M. McManus','Literatura Juvenil',1050,5,7,2022);
+savepoint SP_2;
+
+-- release savepoint SP_1; #eliminacion del save point
